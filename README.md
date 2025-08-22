@@ -77,3 +77,9 @@ This is done in `chrome://extensions` in the extension 'Details'.
 
 # Related
 There is also a Firefox version: [https://github.com/Mapaor/copy-latex-firefox-extension](https://github.com/Mapaor/copy-latex-firefox-extension)
+
+You can also use this extension in Brave and Arc (they support Chrome extensions by default). 
+
+I also plan to adapt this code for Edge and Opera and publish in their respective places. 
+
+A Safari version is not planned because publishing in Safari is ridiculously expensive.
