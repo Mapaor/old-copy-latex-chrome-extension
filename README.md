@@ -48,6 +48,28 @@ However you can always customize in which hosts (websites) the extension loads o
 
 This is done in `chrome://extensions` in the extension 'Details'.
 
+<details>
+<summary>Recommended websites to add</summary>
+
+- https://chatgpt.com/*
+- https://chat.deepseek.com/*
+- https://math.stackexchange.com/*
+- https://physics.stackexchange.com/*
+- https://proofwiki.org/*
+- https://\*.wikipedia.org/*
+- https://www.wikiwand.com/*
+- https://mathoverflow.net/*
+- https://\*.notion.site/*
+- https://publish.obsidian.md/*
+- https://nbviewer.org/*
+- https://www.phind.com/*
+- https://chat.mistral.ai/*
+- https://librechat-librechat.hf.space/*
+- https://www.perplexity.ai/*
+- https://phys.libretexts.org/*
+
+</details>
+
 ## Links
 - Chrome Extension Page: [https://chromewebstore.google.com/detail/copy-latex-katex-mathjax/lmhdbdfaadjfjclobmodomehekpjpkgn](https://chromewebstore.google.com/detail/copy-latex-katex-mathjax/lmhdbdfaadjfjclobmodomehekpjpkgn)
 - GitHub Repo: [https://github.com/Mapaor/copy-latex-chrome-extension](https://github.com/Mapaor/copy-latex-chrome-extension)
