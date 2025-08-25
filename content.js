@@ -1,47 +1,11 @@
 // Inject page script for MathJax v3 extraction
 function injectMathJaxPageScript() {
   const script = document.createElement('script');
-  script.textContent = `
-    (function() {
-      function getLatexForContainer(mjxContainer) {
-        if (typeof MathJax !== 'undefined' && MathJax.startup && MathJax.startup.document && MathJax.startup.document.math) {
-          let current = MathJax.startup.document.math.list;
-          const targetHTML = mjxContainer.innerHTML;
-          while (current && current.data) {
-            const mathItem = current.data;
-            if (mathItem.typesetRoot && mathItem.typesetRoot.innerHTML === targetHTML) {
-              if (mathItem.math && typeof mathItem.math === 'string') {
-                return mathItem.math.trim();
-              }
-            }
-            current = current.next;
-            if (current === MathJax.startup.document.math.list) break;
-          }
-        }
-        return null;
-      }
-
-      document.addEventListener('mouseover', function(e) {
-        const mjx = e.target.closest('mjx-container');
-        if (mjx) {
-          const latex = getLatexForContainer(mjx);
-          if (latex) {
-            window.postMessage({ type: 'HoverLatex_MathJaxV3', latex, mjxId: mjx.getAttribute('ctxtmenu_counter') }, '*');
-          }
-        }
-      }, true);
-
-      document.addEventListener('click', function(e) {
-        const mjx = e.target.closest('mjx-container');
-        if (mjx) {
-          const latex = getLatexForContainer(mjx);
-          if (latex) {
-            window.postMessage({ type: 'HoverLatex_MathJaxV3', latex, mjxId: mjx.getAttribute('ctxtmenu_counter') }, '*');
-          }
-        }
-      }, true);
-    })();
-  `;
+  script.src = chrome.runtime.getURL('mathjax-inject.js');
+  script.onload = function() {
+    console.log('[HoverLatex] Injected mathjax-inject.js');
+    this.remove();
+  };
   document.documentElement.appendChild(script);
 }
 
@@ -52,6 +16,7 @@ let lastMathJaxV3Latex = null;
 window.addEventListener('message', function(event) {
   if (event.source !== window) return;
   if (event.data && event.data.type === 'HoverLatex_MathJaxV3') {
+    console.log('[HoverLatex] Received HoverLatex_MathJaxV3 message:', event.data);
     lastMathJaxV3Latex = event.data.latex;
   }
 });
@@ -91,12 +56,16 @@ function findMathJaxV3Tex(el) {
   // Check for MathJax v3 containers
   const mjxContainer = el.closest('mjx-container');
   if (!mjxContainer) {
+    console.log('[HoverLatex] findMathJaxV3Tex: No mjx-container found for', el);
     return null;
   }
 
   // Use the last received LaTeX from the page script
   if (lastMathJaxV3Latex) {
+    console.log('[HoverLatex] findMathJaxV3Tex: Using lastMathJaxV3Latex', lastMathJaxV3Latex);
     return lastMathJaxV3Latex;
+  } else {
+    console.log('[HoverLatex] findMathJaxV3Tex: No lastMathJaxV3Latex available');
   }
 
   // Fallback: try to find any associated script elements nearby
@@ -106,6 +75,7 @@ function findMathJaxV3Tex(el) {
       current = current.nextElementSibling;
       if (current.tagName === 'SCRIPT' && 
           (current.type === 'math/tex' || current.type === 'math/tex; mode=display')) {
+        console.log('[HoverLatex] findMathJaxV3Tex: Found fallback script element', current);
         return current.textContent.trim();
       }
     } else {
@@ -113,6 +83,7 @@ function findMathJaxV3Tex(el) {
     }
   }
 
+  console.log('[HoverLatex] findMathJaxV3Tex: No LaTeX found for mjx-container', mjxContainer);
   return null;
 }
 
