@@ -1,4 +1,6 @@
 // mathjax-inject.js
+// No data stored, simple script. 
+// Necessary for obtaining the LaTeX code via MathJax API for MathJax v3 and v4.
 (function() {
   function getLatexForContainer(mjxContainer) {
     console.log('[HoverLatex][Injected] getLatexForContainer called', mjxContainer);
