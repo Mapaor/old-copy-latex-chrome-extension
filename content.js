@@ -1,9 +1,8 @@
 // Inject page script for MathJax v3 extraction
 function injectMathJaxPageScript() {
   const script = document.createElement('script');
-  script.src = chrome.runtime.getURL('mathjax-inject.js');
+  script.src = chrome.runtime.getURL('mathjax-api.js');
   script.onload = function() {
-    console.log('[HoverLatex] Injected mathjax-inject.js');
     this.remove();
   };
   document.documentElement.appendChild(script);
@@ -16,7 +15,6 @@ let lastMathJaxV3Latex = null;
 window.addEventListener('message', function(event) {
   if (event.source !== window) return;
   if (event.data && event.data.type === 'HoverLatex_MathJaxV3') {
-    console.log('[HoverLatex] Received HoverLatex_MathJaxV3 message:', event.data);
     lastMathJaxV3Latex = event.data.latex;
   }
 });
@@ -56,16 +54,13 @@ function findMathJaxV3Tex(el) {
   // Check for MathJax v3 containers
   const mjxContainer = el.closest('mjx-container');
   if (!mjxContainer) {
-    console.log('[HoverLatex] findMathJaxV3Tex: No mjx-container found for', el);
     return null;
   }
 
   // Use the last received LaTeX from the page script
   if (lastMathJaxV3Latex) {
-    console.log('[HoverLatex] findMathJaxV3Tex: Using lastMathJaxV3Latex', lastMathJaxV3Latex);
     return lastMathJaxV3Latex;
   } else {
-    console.log('[HoverLatex] findMathJaxV3Tex: No lastMathJaxV3Latex available');
   }
 
   // Fallback: try to find any associated script elements nearby
@@ -75,7 +70,6 @@ function findMathJaxV3Tex(el) {
       current = current.nextElementSibling;
       if (current.tagName === 'SCRIPT' && 
           (current.type === 'math/tex' || current.type === 'math/tex; mode=display')) {
-        console.log('[HoverLatex] findMathJaxV3Tex: Found fallback script element', current);
         return current.textContent.trim();
       }
     } else {
@@ -83,7 +77,6 @@ function findMathJaxV3Tex(el) {
     }
   }
 
-  console.log('[HoverLatex] findMathJaxV3Tex: No LaTeX found for mjx-container', mjxContainer);
   return null;
 }
 
@@ -194,13 +187,13 @@ function hideOverlay() {
 function copyLatex(tex) {
   navigator.clipboard.writeText(tex).then(() => {
     overlay.classList.add('copied');
-    overlay.querySelector('span').textContent = 'Copied! ✅';
+    overlay.querySelector('span').textContent = 'Copied!';
     setTimeout(() => {
       overlay.classList.remove('copied');
       overlay.querySelector('span').textContent = 'Click to copy';
     }, 1500);
   }).catch(err => {
-    console.error("[HoverLatex] Clipboard error:", err);
+    console.error("[Copy LaTeX] Clipboard error:", err);
   });
 }
 
