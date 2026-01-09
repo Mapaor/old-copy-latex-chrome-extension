@@ -24,13 +24,13 @@ Version 1.1: Now it also works with with Wikipedia and Wikiwand images.
 
 ## Example GIFs
 #### KaTeX
-<img src="gif-demo-katex.gif" alt="Demo-KaTeX" width="800">
+<img src="assets/gif-demo-katex.gif" alt="Demo-KaTeX" width="800">
 
 #### MathJax
-<img src="gif-demo-mathjax.gif" alt="Demo-MathJax" width="800">
+<img src="assets/gif-demo-mathjax.gif" alt="Demo-MathJax" width="800">
 
 #### Wikipedia images
-<img src="gif-demo-wikipedia.gif" alt="Demo-MathJax" width="800">
+<img src="assets/gif-demo-wikipedia.gif" alt="Demo-MathJax" width="800">
 
 ## Popular Sites Using MathJax/KaTeX
 Generally any math, physics, or engineering-related blog or website. Some typical examples:
@@ -42,9 +42,9 @@ The javascript source code is extremely simple and available [here](https://gith
 
 However you can always customize in which hosts (websites) the extension loads or not:
 
-<img src="only-specific-sites.jpg" alt="Manage-allowed-hosts" width="800">
+<img src="assets/only-specific-sites.jpg" alt="Manage-allowed-hosts" width="800">
 
-<img src="example-specific-site.jpg" alt="Adding-an-allowed-host" width="800">
+<img src="assets/example-specific-site.jpg" alt="Adding-an-allowed-host" width="800">
 
 This is done in `chrome://extensions` in the extension 'Details'.
 
