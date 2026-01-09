@@ -1,3 +1,7 @@
+# NOTE
+
+I am in the process of recreating the Chrome extension (v1.1) from the [Firefox extension](https://addons.mozilla.org/en-US/firefox/addon/copy-latex/) (v1.4). However I do not want to manually update this constantly, but at the same time I can't fork my own repositories and I don't want to use build scripts to keep the code clean and easy to read and use. So I will think of a way and implement it when I have the time.
+
 # CopyLaTeX
 
 A Chrome extension that lets you quickly copy LaTeX code (KaTeX or MathJax) from equations displayed on websites like ChatGPT, DeepSeek, or any blog using mathematical equations. It works simply by hovering over an equation and clicking to copy the LaTeX expression.
