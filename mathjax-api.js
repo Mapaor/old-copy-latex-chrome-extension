@@ -1,5 +1,5 @@
-// mathjax-inject.js
-// No data stored, simple script. 
+// mathjax-api.js
+// No data stored, simple injected script. 
 // Necessary for obtaining the LaTeX code via MathJax API for MathJax v3 and v4.
 
 (function() {

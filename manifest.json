@@ -14,7 +14,7 @@
   ],
   "web_accessible_resources": [
   {
-    "resources": ["mathjax-inject.js"],
+    "resources": ["mathjax-api.js"],
     "matches": ["<all_urls>"]
   }
 ]  
