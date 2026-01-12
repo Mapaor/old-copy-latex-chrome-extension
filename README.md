@@ -1,8 +1,10 @@
 # NOTE
 
-I am in the process of recreating the Chrome extension (v1.1) from the [Firefox extension](https://addons.mozilla.org/en-US/firefox/addon/copy-latex/) (v1.4). However I do not want to manually update this constantly, but at the same time I can't fork my own repositories and I don't want to use build scripts to keep the code clean and easy to read and use. So I will think of a way and implement it when I have the time.
+This is the old repo of the Chrome extension (v1.1). The new repo (which is a Git fork from the Firefox one) is the current one (v^1.4).
 
-UPDATE: Done! Check it out here: [https://github.com/Mapaor/copy-latex-chrome-extension](https://github.com/Mapaor/copy-latex-chrome-extension). I'll declare the old repo as archive as soon as the new version gets accepted (published).
+Visit it here: [https://github.com/Mapaor/copy-latex-chrome-extension](https://github.com/Mapaor/copy-latex-chrome-extension). 
+
+This repo is now declared as a archive.
 
 # CopyLaTeX
 
